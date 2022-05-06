@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>滑鼠拖曳</h1>
+<h2>移動左上的小方框 使右半邊可以看到更清楚的放大圖</h2>
+<p>&nbsp;</p>
+<h3>作品展示</h3>
+<p>
+  <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="950" height="400">
+    <param name="movie" value="../../Assert/media/map.swf" />
+    <param name="quality" value="high" />
+    <param name="wmode" value="opaque" />
+    <param name="swfversion" value="15.0.0.0" />
+    <!-- 此 param 標籤會提示使用 Flash Player 6.0 r65 和更新版本的使用者下載最新版本的 Flash Player。如果您不想讓使用者看到這項提示，請將其刪除。 -->
+    <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+    <!-- 下一個物件標籤僅供非 IE 瀏覽器使用。因此，請使用 IECC 將其自 IE 隱藏。 -->
+    <!--[if !IE]>-->
+    <object type="application/x-shockwave-flash" data="../../Assert/media/map.swf" width="950" height="400">
+      <!--<![endif]-->
+      <param name="quality" value="high" />
+      <param name="wmode" value="opaque" />
+      <param name="swfversion" value="15.0.0.0" />
+      <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+      <!-- 瀏覽器會為使用 Flash Player 6.0 和更早版本的使用者顯示下列替代內容。 -->
+      <div>
+        <h4>這個頁面上的內容需要較新版本的 Adobe Flash Player。</h4>
+        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="取得 Adobe Flash Player" width="112" height="33" /></a></p>
+      </div>
+      <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+  </object>
+</p>
+<h3>程式碼</h3>
+<pre class="brush: as3">
+
+viewRec.buttonMode=true;
+Lmap.buttonMode=true;
+Lmap.mask=$mask;
+var myRec1:Rectangle=new Rectangle(viewRec.x,viewRec.y,Smap.width-viewRec.width,Smap.height-viewRec.height);
+var myRec2:Rectangle=new Rectangle($mask.width-Lmap.width+$mask.x,$mask.height-Lmap.height+$mask.y,Lmap.width-$mask.width,Lmap.height-$mask.height);
+
+viewRec.addEventListener(MouseEvent.MOUSE_DOWN, $DragViewRec);
+viewRec.addEventListener(MouseEvent.MOUSE_UP, $DragViewRec);
+viewRec.addEventListener(MouseEvent.MOUSE_OUT, $DragViewRec);
+viewRec.addEventListener(MouseEvent.MOUSE_MOVE, $DragViewRec);
+
+Lmap.addEventListener(MouseEvent.MOUSE_DOWN, $DragLmap);
+Lmap.addEventListener(MouseEvent.MOUSE_UP, $DragLmap);
+Lmap.addEventListener(MouseEvent.MOUSE_OUT, $DragLmap);
+Lmap.addEventListener(MouseEvent.MOUSE_MOVE, $DragLmap);
+
+
+function $DragViewRec($e:MouseEvent){
+	
+	switch($e.type){
+		
+		case "mouseDown":
+		viewRec.startDrag(false,myRec1);
+		break;
+		
+		case "mouseUp":
+		viewRec.stopDrag();
+		break;
+		
+		case "mouseOut":
+		viewRec.stopDrag();
+		break;
+		
+		case "mouseMove":
+		Lmap.x=$mask.x-(viewRec.x-Smap.x)*(Lmap.width-$mask.width)/(Smap.width-viewRec.width);
+		Lmap.y=$mask.y-(viewRec.y-Smap.y)*(Lmap.height-$mask.height)/(Smap.height-viewRec.height);
+		break;
+	}
+}
+	
+function $DragLmap($e:MouseEvent){
+	
+	switch($e.type){
+		
+		case "mouseDown":
+		Lmap.startDrag(false,myRec2);
+		break;
+		
+		case "mouseUp":
+		Lmap.stopDrag();
+		break;
+		
+		case "mouseOut":
+		Lmap.stopDrag();
+		break;
+		
+		case "mouseMove":
+		viewRec.x=Smap.x-(Lmap.x-$mask.x)*(Smap.width-viewRec.width)/(Lmap.width-$mask.width);
+		viewRec.y=Smap.y-(Lmap.y-$mask.y)*(Smap.height-viewRec.height)/(Lmap.height-$mask.height);
+		break;
+	}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+<script type="text/javascript">
+swfobject.registerObject("FlashID");
+</script>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushAS3.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+</html>

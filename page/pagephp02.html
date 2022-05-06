@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>PHP網頁總覽</h1>
+
+<h2>抓取系統時間的各種日期時間表示方法</h2>
+
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../Assert/image/php/p01.png" width="350" height="279" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: php">
+< ?php
+/*系統完整日期西元4位數(年-月-日)*/ 
+echo date('Y-m-d')."< br />";
+/*系統完整日期西元2位數(年/月/日)*/
+echo date('y/m/d')."< br />"; 
+/*系統完整日期西元4位數年月不補0(年/月/日)*/
+echo date('Y/n/j')."< br />"; 
+/*系統完整日期西元2位數(日/月/年)*/
+echo date('d/m/y')."< br />";
+/*中文混合+系統完整日期西元4位數年月不補0(年/月/日)*/
+echo date('y年n月j日')."< br />"; 
+/*顯示今天星期幾(英文形)中文字打外面*/
+echo "今天是".date('l')."< br />";  
+/*系統時間24小時制(時/分/秒)時區+0*/
+echo date('H:i:s')."< br />"; 
+/*系統時間24小時制(時/分/秒)台灣時區*/
+date_default_timezone_set('Asia/Taipei');
+echo date('H:i:s')."< br />";
+/*系統時間12小時制(時/分/秒)時區+0 A為大小AM/PM a為小寫am/pm */
+echo date('A h:i:s')."< br />"; 
+?>
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>後台管理</h2>
+<p>&nbsp;</p>
+<h3>1.前台畫面</h3>
+<p><img src="../Assert/image/php/p02.png" width="724" height="481" /></p>
+<p>&nbsp;</p>
+<h3>登入後台</h3>
+<p><img src="../Assert/image/php/p03.png" width="469" height="246" /></p>
+<p>&nbsp;</p>
+<h3>後台管理首頁</h3>
+<p><img src="../Assert/image/php/p04.png" width="741" height="524" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>新增</h3>
+<p><img src="../Assert/image/php/p05.png" width="598" height="539" /></p>
+<p>&nbsp;</p>
+<p><img src="../Assert/image/php/p06.png" width="623" height="226" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>編輯</h3>
+<p><img src="../Assert/image/php/p07.png" width="600" height="539" /></p>
+<p>&nbsp;</p>
+<p><img src="../Assert/image/php/p08.png" width="620" height="265" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>刪除</h3>
+<p><img src="../Assert/image/php/p09.png" width="610" height="393" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>會員系統</h2>
+<p>&nbsp;</p>
+<h3>亂打帳密做測試</h3>
+<p><img src="../Assert/image/php/p19.png" width="623" height="471" /></p>
+<p>&nbsp;</p>
+<h3>登入進入會員專區</h3>
+<p><img src="../Assert/image/php/p21.png" width="613" height="546" /></p>
+<p>&nbsp;</p>
+<h3>非管理員點選會員管理</h3>
+<p><img src="../Assert/image/php/p22.png" width="618" height="456" /></p>
+<p>&nbsp;</p>
+<h3>會員管理</h3>
+<p><img src="../Assert/image/php/p23.png" width="613" height="219" /></p>
+<p>&nbsp;</p>
+<h3>會員查詢</h3>
+<p><img src="../Assert/image/php/p24.png" width="621" height="212" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>留言板</h2>
+<p>&nbsp;</p>
+<h3>留言畫面</h3>
+<p><img src="../Assert/image/php/p10.png" width="541" height="351" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>查看留言</h3>
+<p><img src="../Assert/image/php/p11.png" width="603" height="577" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>購物車</h2>
+<p>&nbsp;</p>
+<h3>商品畫面</h3>
+<p><img src="../Assert/image/php/p12.png" width="610" height="584" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>購物車畫面</h3>
+<p><img src="../Assert/image/php/p13.png" width="617" height="293" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>結帳畫面</h3>
+<p><img src="../Assert/image/php/p14.png" width="602" height="533" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>對客戶資訊欄位做驗證</h3>
+<p><img src="../Assert/image/php/p15.png" width="622" height="553" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>訂購完成</h3>
+<p><img src="../Assert/image/php/p16.png" width="616" height="219" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>訂單資料</h3>
+<p><img src="../Assert/image/php/p17.png" width="628" height="517" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</body>
+<link href="../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../Assert/syntaxhighlighter/scripts/shBrushPhp.js" type="text/javascript"></script>
+<script src="../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>遞迴</h1>
+<h2>＊java13片段:以遞迴方式，列出3張椅子的6種排列組合</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a401.png" width="342" height="158" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+class p_three{
+	int count = 0;
+	void p_three(int x[], int low, int high){
+      int i, j, temp;
+      int [] y = new int[x.length];
+
+      if(low == high){   
+         print_array(x);}
+      else{
+         for(i = 0; i < x.length; i++)      
+            y[i] = x[i];
+
+         for(j = low; j <= high; j++){
+            temp = x[low];                 
+            x[low] = x[j];
+            x[j] = temp;
+
+			p_three(x, low + 1, high);
+
+            for(i = 0; i < x.length; i++)  
+               x[i] = y[i];}
+      }
+   }
+
+   void print_array(int a[]){
+      int i;
+      count ++;
+      System.out.print("第 " + count + " 種坐法：(a, b, c) = (");       
+
+      for(i = 0; i < a.length; i++){
+         System.out.print(a[i]);
+         if(i != a.length-1)
+            System.out.print(", ");}
+      System.out.println(")");}
+}
+
+public class Exam_31580_3{
+   public static void main(String args[]){
+      int [] x = {1, 2, 3} ;
+	  p_three p = new p_three();
+      System.out.println("3 張椅子的 6 種坐法：");
+	  p.p_three(x, 0, x.length - 1);}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java14片段:以遞迴寫出費式級數並輸出n=6的結果</h2>
+<h2>費式級數 : F0 = 0
+  F1 = 1
+  Fn = Fn-1 + Fn-2</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a402.png" width="284" height="47" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+import java.util.*;
+
+class f {
+    int start;
+    public long fab(int n){
+        if(n==0){
+            return 0;}
+        else if(n==1){
+            return 1;}
+        else{
+            return fab(n-1)+fab(n-2);}
+    }
+}
+
+
+public class Mid_4 {
+    public static void main(String[] args){             
+        //費式級數
+        f ff = new f();
+		System.out.print("當n=6的費式級數為: ");
+        System.out.println(ff.fab(6));}    
+}
+
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java15片段:以輾轉相除法算出15與18的最大公因數</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a403.png" width="304" height="47" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+import java.util.*;
+class b{
+    public long gcd(int m, int n){
+        if((m%n) != 0){
+            return gcd(n, m%n);}
+        else{
+            return n;}
+    }
+}
+
+public class Mid_4 {    
+    public static void main(String[] args){
+        //輾轉相除
+        b bb = new b();
+		System.out.print("18與15的最大公因數為: ");
+        System.out.println(bb.gcd(18,15));}      
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushJava.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>圖形與網路</h1>
+<h2>＊java23片段:對使用者輸入的無向圖以相鄰矩陣展示</h2>
+<h2>並以堆疊實做DFS(深度追蹤)判斷是否為相連圖</h2>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/b101.png" width="510" height="823" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+
+<pre class="brush: java">
+import java.io.*;
+
+class undirected_graph_dfs{
+   static int no_vertices;   // 頂點個數
+   static int [][] adjmatrix = new int[50][50] ;   // 相鄰矩陣
+   static boolean [] visited = new boolean[50] ;   // 已拜訪陣列
+   Stack x = new Stack(50);  //堆疊
+   static int step = 0;
+   
+   // ------------------------------------
+   // 輸入無向圖的邊，並用相鄰矩陣來表示之
+   // ------------------------------------
+   void create_undirected_graph(){
+      BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+      String s = "";
+      int i = 0, j = 0;
+
+      System.out.print("無向圖 G 共有幾個頂點 : ");
+      try{
+         s = input.readLine();}
+       	catch (IOException e) {}
+      try{
+         no_vertices = Integer.parseInt(s);}
+       	catch (NumberFormatException e) {}
+
+      if(no_vertices > 0){
+         for(i = 0; i < no_vertices; i++)
+            for(j = 0; j < no_vertices; j++)
+               adjmatrix[i][j] = 0;
+         for(i = 0; i < no_vertices; i++)
+               visited[i] = false;
+
+         System.out.print("無向圖 G 共有 " + no_vertices + " 個頂點，");
+         System.out.print("頂點編號為 ");
+         for(i = 0; i < no_vertices; i++)
+            System.out.print(i + "  ");
+         System.out.println();      
+
+         System.out.println("【請輸入無向圖 G 的邊，結束時輸入-1】");
+         while(true){
+            System.out.print("邊是連接頂點 : ");
+            try{
+               s = input.readLine();
+               i = Integer.parseInt(s);           
+               if(i == -1)
+                  break;
+            } catch (IOException e) {}
+            System.out.print("　　　和頂點 : ");
+            try{
+               s = input.readLine();
+               j = Integer.parseInt(s);
+               if(j == -1)
+                  break;      
+            } catch (IOException e) {}
+            adjmatrix[i][j] = 1;
+            adjmatrix[j][i] = 1;}
+      }
+   }
+
+   // ------------
+   // 列印相鄰矩陣
+   // ------------
+   void print_adjmatrix(){
+      int i = 0, j = 0;
+
+      System.out.println("\n擁有 " + no_vertices + " 個頂點的無向圖 G 之相鄰矩陣表示法如下 : ");
+
+      System.out.print("   | ");
+      for(i = 0; i < no_vertices; i++){
+         System.out.print(i + "   ");}
+      System.out.println();
+
+      for(i = 0; i <= no_vertices; i++){
+         System.out.print("----");}      
+      System.out.println();
+
+      for(i = 0; i < no_vertices; i++){
+         System.out.print(" " + i + " | " );
+         for(j = 0; j < no_vertices; j++){
+            System.out.print(adjmatrix[i][j] + "   ");}         
+         System.out.println();}
+   }
+
+   // -----------------
+   // 無向圖的 DFS 搜尋
+   // -----------------
+   void dfs(int i){
+      int j = 0;      
+
+      x.push(i);
+      
+      step = step + 1;
+      System.out.println("步驟 (" + step + ") : ");
+      System.out.println("push("+ i +")");
+      
+      while(!x.empty() && !visited[x.top()]){
+        int y= x.pop();  
+        step = step + 1;
+        System.out.println("步驟 (" + step + ") : ");
+        System.out.println("pop("+ y +")");   
+        System.out.println(" 拜訪 頂點 " + y);
+        visited[y] = true;
+                	
+      	for(j=0;j< no_vertices;j++){
+      		if(adjmatrix[y][j] == 1 && !visited[j]){   
+        	  x.push(j); 
+        	  System.out.println("push("+ j +")");}
+        }      	
+      }
+   }
+
+   // -------------------------
+   // 判斷無向圖 G 是否為相連圖
+   // -------------------------
+   boolean isconnectedgraph(){
+      int i = 0;
+
+      while(i < no_vertices){
+         if(visited[i] == false)
+            return false;
+         i++;}
+      return true;}
+}
+
+public class HW2_2{
+   public static void main(String args[]){ 
+      // 產生一個名為 g 的 undirected_graph 物件
+      java.util.Scanner input = new java.util.Scanner( System.in );
+      undirected_graph_dfs g = new undirected_graph_dfs();
+
+      g.create_undirected_graph();
+      g.print_adjmatrix();
+      
+      System.out.println("\n無向圖 G 的深度優先搜尋(DFS)，請輸入拜訪起始頂點 : ");
+      int start_vertice = input.nextInt();
+      
+      System.out.println("\n拜訪頂點的順序如下 : ");
+      g.dfs(start_vertice);
+      
+      if(g.isconnectedgraph())
+         System.out.println("\n無向圖 G 是一個相連圖");
+      else
+         System.out.println("\n無向圖 G 不是一個相連圖");}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java24片段:對使用者輸入的無向圖以相鄰矩陣展示</h2>
+<h2>並以佇列實做BFS(廣度追蹤)判斷是否為相連圖</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/b102.png" width="503" height="732" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+import java.io.*;
+
+class undirected_graph_bfs{
+   static int no_vertices;   // 頂點個數
+   static int [][] adjmatrix = new int[50][50] ;   // 相鄰矩陣
+   static boolean [] visited = new boolean[50] ;   // 已拜訪陣列
+   static int step  = 0;
+   static int front = -1;
+   static int rear  = -1;
+   static int [] queue = new int[100];   // 佇列
+   
+   // ------------------------------------
+   // 輸入無向圖的邊，並用相鄰矩陣來表示之
+   // ------------------------------------
+   void create_undirected_graph(){
+      BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+      String s = "";
+      int i = 0, j = 0;
+
+      System.out.print("無向圖 G 共有幾個頂點 : ");
+      try{
+         s = input.readLine();
+      } catch (IOException e) {}
+      try{
+         no_vertices = Integer.parseInt(s);
+      } catch (NumberFormatException e) {}
+
+      if(no_vertices > 0){
+         for(i = 0; i < no_vertices; i++)
+            for(j = 0; j < no_vertices; j++)
+               adjmatrix[i][j] = 0;
+         for(i = 0; i < no_vertices; i++)
+               visited[i] = false;
+
+         System.out.print("無向圖 G 共有 " + no_vertices + " 個頂點，");
+         System.out.print("頂點編號為 ");
+         for(i = 0; i < no_vertices; i++)
+            System.out.print(i + "  ");
+         System.out.println();      
+
+         System.out.println("【請輸入無向圖 G 的邊，結束時輸入-1】");
+         while(true){
+            System.out.print("邊是連接頂點 : ");
+            try{
+               s = input.readLine();
+               i = Integer.parseInt(s);           
+               if(i == -1)
+                  break;
+            } catch (IOException e) {}
+            System.out.print("　　　和頂點 : ");
+            try{
+               s = input.readLine();
+               j = Integer.parseInt(s);
+               if(j == -1)
+                  break;      
+            } catch (IOException e) {}
+            adjmatrix[i][j] = 1;
+            adjmatrix[j][i] = 1;}
+      }
+   }
+
+   // ------------
+   // 列印相鄰矩陣
+   // ------------
+   void print_adjmatrix(){
+      int i = 0, j = 0;
+
+      System.out.println("\n擁有 " + no_vertices + " 個頂點的無向圖 G 之相鄰矩陣表示法如下 : ");
+
+      System.out.print("   | ");
+      for(i = 0; i < no_vertices; i++){
+         System.out.print(i + "   ");}
+      System.out.println();
+
+      for(i = 0; i <= no_vertices; i++){
+         System.out.print("----");}
+      System.out.println();
+
+      for(i = 0; i < no_vertices; i++){
+         System.out.print(" " + i + " | " );
+         for(j = 0; j < no_vertices; j++){
+            System.out.print(adjmatrix[i][j] + "   ");}
+         System.out.println();}
+   }
+
+   // -----------------
+   // 無向圖的 BFS 搜尋
+   // -----------------
+   void bfs(int i){
+		int j = 0;
+   		step = step + 1;
+      	System.out.println("步驟 (" + step + ") : ");
+      	System.out.println(" 拜訪 頂點 " + i);
+      	visited[i]=true;
+      
+      	for(j=0;j< no_vertices;j++){
+      		if(adjmatrix[i][j] == 1 && !visited[j]){   
+        	  add(j);
+        	  System.out.println("add " + j);}
+        }
+        
+      while(!empty()){        
+        int y= remove();  
+        
+        if(visited[y]!=true){
+               visited[y]=true;
+               step+=1;
+               System.out.println("步驟 (" + step + ") : 拜訪 頂點 " + y);
+               System.out.println("remove " + y);}
+        else{  
+        	continue;}     
+                            	
+      	for(j=0;j< no_vertices;j++){
+      		if(adjmatrix[y][j] == 1 && !visited[j]){   
+        	  add(j); 
+        	  System.out.println("add " + j);}
+        }      	
+      }
+  }
+
+   // -----------------------
+   // 將頂點 x 加到佇列的尾端
+   // -----------------------
+   void add(int x){
+      if(!full()){
+         rear = rear + 1;
+         queue[rear] = x;}
+      else
+         System.out.println("queue 已滿！");}
+
+   // ----------------
+   // 刪除佇列頭端資料
+   // ----------------
+   int remove(){
+      if(!empty()){
+         front = front + 1;
+         return (queue[front]);}
+      else{
+         System.out.print("queue 已空！");
+         return(-1);}
+   }
+
+   boolean full(){  // 佇列已滿(return true)   
+      return (rear ==  100 - 1) ? true : false;}
+
+   boolean empty(){  // 佇列已空(return true)
+      return (front == rear) ? true : false;}
+
+   // -------------------------
+   // 判斷無向圖 G 是否為相連圖
+   // -------------------------
+   boolean isconnectedgraph(){
+      int i = 0;
+
+      while(i < no_vertices){
+         if(visited[i] == false)
+            return false;
+         i++;}
+      
+      return true;}
+}
+
+public class HW2_3{
+   public static void main(String args[]){ 
+      // 產生一個名為 g 的 undirected_graph 物件
+      undirected_graph_bfs g = new undirected_graph_bfs();
+
+      g.create_undirected_graph();
+      g.print_adjmatrix();
+      
+      java.util.Scanner input = new java.util.Scanner( System.in );
+      System.out.println("\n無向圖 G 的廣度優先搜尋(BFS)，請輸入拜訪起始頂點 : ");
+      int start_vertice = input.nextInt();
+      
+      System.out.println("\n拜訪頂點的順序如下 : ");
+      g.bfs(start_vertice);
+      
+      if(g.isconnectedgraph())
+         System.out.println("\n無向圖 G 是一個相連圖");
+      else
+         System.out.println("\n無向圖 G 不是一個相連圖");}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java25片段:對使用者輸入的無向圖G以相鄰矩陣表示</h2>
+<h2>再使用 K 氏法(Kruskal's)求無向圖 G 的最小成本擴張樹</h2>
+<h2>並撰寫cycle方法檢查要加進來的邊是否構成迴路 <br />
+</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/b103.png" width="743" height="618" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+import java.io.*;
+
+class Edge{ 	   // 定義一個邊類別，邊(x, y)連接頂點 x 和頂點 y
+   int x;          // 頂點 x
+   int y;          // 頂點 y
+   int cost;       // 邊的成本或權重
+   int selected;};   // -1(未被選過), 1(選上了), 0(會造成迴路須放棄)
+
+class undirected_graph_min{
+   static int no_vertices;                      // 頂點個數
+   static int [][] adjmatrix = new int[50][50]; // 相鄰矩陣
+   static int [][] mcst = new int[50][50];      // 最小成本擴張樹的相鄰矩陣
+   static int [] T = new int[50];               // 最小成本擴張樹的頂點集合
+   static Edge [] edge = new Edge[50];          // 圖 G 的邊集合
+   static int maxcost = 999;   // 用 999 來代表成本為無限大
+   static int totalcost = 0;   // 擴張樹的總成本
+   static int indext = -1;     // T 陣列的元素指標
+   static int indexe = -1;     // edge 陣列的元素指標
+   
+   // ------------------------------------------
+   // 輸入無向圖的邊和成本，並用相鄰矩陣來表示之
+   // ------------------------------------------
+   void create_undirected_graph(){
+      BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+      String s = "";
+      int i = 0, j = 0, cost = 0;
+
+      System.out.print("無向圖 G 共有幾個頂點 : ");
+      try{
+         s = input.readLine();
+      } catch (IOException e) {}
+      try{
+         no_vertices = Integer.parseInt(s);
+      } catch (NumberFormatException e) {}
+
+      if(no_vertices > 0){
+         for(i = 0; i < no_vertices; i++){
+            for(j = 0; j < no_vertices; j++){
+               adjmatrix[i][j] = maxcost;
+               mcst[i][j] = maxcost;}
+         }
+
+         System.out.print("無向圖 G 共有 " + no_vertices + " 個頂點，");
+         System.out.print("頂點編號為 ");
+         for(i = 0; i < no_vertices; i++)
+            System.out.print(i + "  ");
+         System.out.println();      
+
+         System.out.println("【請輸入無向圖 G 的邊，結束時輸入-1】");
+         while(true){
+            System.out.print("邊是連接頂點 : ");
+            try{
+               s = input.readLine();
+               i = Integer.parseInt(s);           
+               if(i == -1)
+                  break;
+            } catch (IOException e) {}
+            System.out.print("　　　和頂點 : ");
+            try{
+               s = input.readLine();
+               j = Integer.parseInt(s);
+               if(j == -1)
+                  break;      
+            } catch (IOException e) {}
+            System.out.print("　　　成本為 : ");
+            try{
+               s = input.readLine();
+               cost = Integer.parseInt(s);
+            } catch (IOException e) {}
+            adjmatrix[i][j] = cost;
+            adjmatrix[j][i] = cost;
+            create_edge(i, j, cost);}
+      }
+   }
+   
+   // -------------------
+   // 列印圖 G 的相鄰矩陣
+   // -------------------
+   void print_adjmatrix(){
+      int i = 0, j = 0;
+
+      System.out.println("\n擁有 " + no_vertices + " 個頂點的無向圖 G 之相鄰矩陣表示法如下 : ");
+
+      System.out.print("     | ");
+      for(i = 0; i < no_vertices; i++){
+         System.out.print(itos(i, 4));}
+      System.out.print("\n--------");
+
+      for(i = 0; i < no_vertices; i++){
+         System.out.print("----");}
+      System.out.println();
+
+      for(i = 0; i < no_vertices; i++){
+         System.out.print(itos(i, 4) + " | " );
+         for(j = 0; j < no_vertices; j++){
+            if(adjmatrix[i][j] == 999)
+               System.out.print("   x");
+            else
+               System.out.print(itos(adjmatrix[i][j], 4));}
+         System.out.println();}
+   }
+
+   // -----------------------
+   // 將 int 轉成 String
+   // -----------------------
+   String itos(int i, int length){
+     int j;
+     String s1 = "", s2="";
+
+     s1 = String.valueOf(i);
+     for(j = 0; j < length - s1.length(); j++)
+        s2 = s2 + " ";
+     s2 = s2 + s1; 
+     return s2;}
+
+   // ---------------------------
+   // 記錄圖 G 的邊及其成本等資訊
+   // ---------------------------
+   void create_edge(int i, int j, int cost){
+      indexe = indexe + 1;
+      edge[indexe] = new Edge();
+      edge[indexe].x = i;
+      edge[indexe].y = j;
+      edge[indexe].cost = cost;
+      edge[indexe].selected = -1;}   // 未被選過
+   
+   // -------------------------------------------------
+   // 使用 K 氏法(Kruskal's)求無向圖 G 的最小成本擴張樹
+   // -------------------------------------------------
+   void min_cost_spanning_tree(){
+      int i, j, step = 0, no_edge = 0, newedge, mincost;
+
+      System.out.println("\n使用Kruskal's氏法求無向圖 G 的最小成本擴張樹的過程如下 : ");
+
+      while(no_edge < no_vertices - 1){
+         newedge = -1;
+         mincost = maxcost;
+         for(j = 0; j <= indexe; j++){
+            if(edge[j].selected == -1)
+               if(mincost > edge[j].cost){
+                  mincost = edge[j].cost;
+                  newedge = j;}
+         }
+         step = step + 1;
+
+         if (newedge == -1) break;  //全部都檢查過了 
+
+         if(!cycle(newedge)){   // 不會造成迴路
+            no_edge = no_edge + 1;
+            edge[newedge].selected = 1;   // 選上這個邊
+            totalcost = totalcost + edge[newedge].cost;
+
+            System.out.print("步驟(" + step + "):考慮邊(");
+            System.out.print(edge[newedge].x + "," + edge[newedge].y + ")");
+            System.out.print("，其成本為 " + edge[newedge].cost);
+            System.out.print("，不會造成迴路，將它加到 T");
+            System.out.println("，此時總成本為 " + totalcost);
+
+            mcst[edge[newedge].x][edge[newedge].y] = edge[newedge].cost;
+            mcst[edge[newedge].y][edge[newedge].x] = edge[newedge].cost;}
+         else{   // 會造成迴路
+            edge[newedge].selected = 0;   // 須放棄
+
+            System.out.print("步驟(" + step + "):考慮邊(");
+            System.out.print(edge[newedge].x + "," + edge[newedge].y + ")");
+            System.out.print("，其成本為 " + edge[newedge].cost);
+            System.out.println("，會造成迴路，須放棄之");}
+      }
+   }
+
+   // ------------------------------------------------------------
+   // 判斷邊 edge[j] 加入 T 是否會造成迴路，如果不會，就將它加入 T 
+   // ------------------------------------------------------------
+   boolean cycle(int j){
+      int represent[]=new int[no_vertices];
+      int i;
+      int z1,z2;
+      
+     int x = edge[j].x;
+     int y = edge[j].y;
+     
+     for(i=0;i<=no_vertices-1;i++){
+            represent[i]=i;}
+     
+     if(represent[x] == represent[y])
+      	return true;
+      	
+      else{
+      	T[++indext]=edge[j].x;
+        T[++indext]=edge[j].y;
+      	if(represent[x] < represent[y]){
+      		z1 = represent[x];
+      		z2 = represent[y];}      	
+      	else{
+      		z1 = represent[y];
+      		z2 = represent[x];}
+      	
+      	for(i=0 ; i< no_vertices ;i++)
+      		if(represent[i] == z2)
+      			represent[i] = z1;
+      					      	
+      	return false;}    
+   }
+
+   // --------------------
+   // 列印最小成本擴張樹 T
+   // --------------------
+   void print_min_cost_spanning_tree(){
+      int i, j;
+
+      System.out.println("\n無向圖 G 的最小成本擴張樹如下 : ");
+      System.out.print("     | ");
+      for(i = 0; i < no_vertices; i++){
+         System.out.print(itos(i, 4));}
+      System.out.print("\n--------");
+
+      for(i = 0; i < no_vertices; i++){
+         System.out.print("----");}
+      System.out.println();
+
+      for(i = 0; i < no_vertices; i++){
+         System.out.print(itos(i, 4) + " | " );
+         for(j = 0; j < no_vertices; j++){
+            if(mcst[i][j] == maxcost)
+               System.out.print("   x");
+            else
+               System.out.print(itos(mcst[i][j], 4));}
+         System.out.println();}
+   }
+}
+
+public class H3_2{
+   public static void main(String args[]){ 
+      // 產生一個名為 g 的 undirected_graph 物件
+      undirected_graph_min g = new undirected_graph_min();
+
+      g.create_undirected_graph();
+      g.print_adjmatrix();
+      g.min_cost_spanning_tree();
+      g.print_min_cost_spanning_tree();}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushJava.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+</html>

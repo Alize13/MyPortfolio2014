@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>基礎篇</h1>
+<h2>元件跟著滑鼠動</h2>
+<p>&nbsp;</p>
+<h3>作品展示</h3>
+<p>
+  <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="400">
+    <param name="movie" value="../../Assert/media/元件跟著滑鼠跑.swf" />
+    <param name="quality" value="high" />
+    <param name="wmode" value="opaque" />
+    <param name="swfversion" value="15.0.0.0" />
+    <!-- 此 param 標籤會提示使用 Flash Player 6.0 r65 和更新版本的使用者下載最新版本的 Flash Player。如果您不想讓使用者看到這項提示，請將其刪除。 -->
+    <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+    <!-- 下一個物件標籤僅供非 IE 瀏覽器使用。因此，請使用 IECC 將其自 IE 隱藏。 -->
+    <!--[if !IE]>-->
+    <object type="application/x-shockwave-flash" data="../../Assert/media/元件跟著滑鼠跑.swf" width="550" height="400">
+      <!--<![endif]-->
+      <param name="quality" value="high" />
+      <param name="wmode" value="opaque" />
+      <param name="swfversion" value="15.0.0.0" />
+      <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+      <!-- 瀏覽器會為使用 Flash Player 6.0 和更早版本的使用者顯示下列替代內容。 -->
+      <div>
+        <h4>這個頁面上的內容需要較新版本的 Adobe Flash Player。</h4>
+        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="取得 Adobe Flash Player" width="112" height="33" /></a></p>
+      </div>
+      <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+  </object>
+</p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: as3">
+s_mc.x+=(mouseX-s_mc.x)*0.1;
+s_mc.y+=(mouseY-s_mc.y)*0.1;
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>彈跳</h2>
+<p>&nbsp;</p>
+<h3>作品展示</h3>
+<p>
+  <object id="FlashID2" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="400">
+    <param name="movie" value="../../Assert/media/彈跳.swf" />
+    <param name="quality" value="high" />
+    <param name="wmode" value="opaque" />
+    <param name="swfversion" value="15.0.0.0" />
+    <!-- 此 param 標籤會提示使用 Flash Player 6.0 r65 和更新版本的使用者下載最新版本的 Flash Player。如果您不想讓使用者看到這項提示，請將其刪除。 -->
+    <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+    <!-- 下一個物件標籤僅供非 IE 瀏覽器使用。因此，請使用 IECC 將其自 IE 隱藏。 -->
+    <!--[if !IE]>-->
+    <object type="application/x-shockwave-flash" data="../../Assert/media/彈跳.swf" width="550" height="400">
+      <!--<![endif]-->
+      <param name="quality" value="high" />
+      <param name="wmode" value="opaque" />
+      <param name="swfversion" value="15.0.0.0" />
+      <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+      <!-- 瀏覽器會為使用 Flash Player 6.0 和更早版本的使用者顯示下列替代內容。 -->
+      <div>
+        <h4>這個頁面上的內容需要較新版本的 Adobe Flash Player。</h4>
+        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="取得 Adobe Flash Player" width="112" height="33" /></a></p>
+      </div>
+      <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+  </object>
+</p>
+<h3>程式碼</h3>
+<pre class="brush: as3">
+var mvy=5;
+var g=2;//重力加速度
+
+ball_mc.addEventListener(Event.ENTER_FRAME, mv);
+function mv(event:Event):void{
+	mvy+=g;//越彈越快
+	if(ball_mc.y>350){
+		ball_mc.y=350;//不讓他跑到地板下
+		mvy=-mvy;//讓mvy變負數反彈
+		mvy+=3;//反彈的同時讓他反彈力道變小(一定要比g大效果才會出來)
+	}
+	ball_mc.y+=mvy; 
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>控制元件的各種屬性:方向.大小.旋轉角度.透明度</h2>
+<p>&nbsp;</p>
+<h3>作品展示</h3>
+<p>
+  <object id="FlashID3" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="400">
+    <param name="movie" value="../../Assert/media/2_飛鳥的八大屬性.swf" />
+    <param name="quality" value="high" />
+    <param name="wmode" value="opaque" />
+    <param name="swfversion" value="9.0.45.0" />
+    <!-- 此 param 標籤會提示使用 Flash Player 6.0 r65 和更新版本的使用者下載最新版本的 Flash Player。如果您不想讓使用者看到這項提示，請將其刪除。 -->
+    <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+    <!-- 下一個物件標籤僅供非 IE 瀏覽器使用。因此，請使用 IECC 將其自 IE 隱藏。 -->
+    <!--[if !IE]>-->
+    <object type="application/x-shockwave-flash" data="../../Assert/media/2_飛鳥的八大屬性.swf" width="550" height="400">
+      <!--<![endif]-->
+      <param name="quality" value="high" />
+      <param name="wmode" value="opaque" />
+      <param name="swfversion" value="9.0.45.0" />
+      <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+      <!-- 瀏覽器會為使用 Flash Player 6.0 和更早版本的使用者顯示下列替代內容。 -->
+      <div>
+        <h4>這個頁面上的內容需要較新版本的 Adobe Flash Player。</h4>
+        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="取得 Adobe Flash Player" width="112" height="33" /></a></p>
+      </div>
+      <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+  </object>
+</p>
+<h3>程式碼</h3>
+<pre class="brush: as3">
+import flash.events.MouseEvent
+
+//往上飛、y軸遞減
+up_btn.addEventListener(MouseEvent.CLICK, up);
+function up(event:MouseEvent):void
+{
+	//bird_mc.y = bird_mc.y - 5;
+	bird_mc.y-=5;
+}
+
+//往下飛、y軸遞增
+down_btn.addEventListener(MouseEvent.CLICK, down);
+
+function down(event:MouseEvent):void
+{
+	bird_mc.y+=5;
+}
+
+//往左飛、x軸遞減
+left_btn.addEventListener(MouseEvent.CLICK, left);
+
+function left(event:MouseEvent):void
+{
+	bird_mc.x-=5;
+}
+
+//往右飛、x軸遞增
+right_btn.addEventListener(MouseEvent.CLICK, right);
+
+function right(event:MouseEvent):void
+{
+	bird_mc.x+=5;
+}
+
+
+//放大、scaleX & scaleX縮放倍率 倍率建議0~1
+big_btn.addEventListener(MouseEvent.CLICK, big);
+
+function big(event:MouseEvent):void
+{
+	bird_mc.scaleX+=0.1;
+	bird_mc.scaleY=bird_mc.scaleX;
+}
+
+//縮小、scaleX & scaleX縮放倍率 倍率建議0~1
+small_btn.addEventListener(MouseEvent.CLICK, small);
+
+function small(event:MouseEvent):void
+{
+	if(bird_mc.scaleX>0.1){
+		bird_mc.scaleX-=0.1;
+		bird_mc.scaleY-=0.1;
+	}
+	else{
+		trace("無法再縮小了");
+	}
+}
+
+//左轉、rotation旋轉角度 -為逆時針
+r1_btn.addEventListener(MouseEvent.CLICK,r1);
+
+function r1(event:MouseEvent):void
+{
+	bird_mc.rotation-=30;
+}
+
+//右轉、rotation旋轉角度 +為順時針
+r2_btn.addEventListener(MouseEvent.CLICK,r2);
+
+function r2(event:MouseEvent):void
+{
+	bird_mc.rotation+=30;
+}
+
+//透明度增加、alpha透明度百分比 倍率建議0~1
+a1_btn.addEventListener(MouseEvent.CLICK,a1);
+
+function a1(event:MouseEvent):void
+{
+	bird_mc.alpha-=0.1;
+}
+
+//透明度減少、alpha透明度百分比 倍率建議0~1
+a2_btn.addEventListener(MouseEvent.CLICK,a2);
+
+function a2(event:MouseEvent):void
+{
+	bird_mc.alpha+=0.1;
+}
+
+//隱藏、visible為false 
+v1_btn.addEventListener(MouseEvent.CLICK,v1);
+
+function v1(event:MouseEvent):void
+{
+	bird_mc.visible=false;
+}
+
+//顯現、visible為true 
+v2_btn.addEventListener(MouseEvent.CLICK,v2);
+
+function v2(event:MouseEvent):void
+{
+	bird_mc.visible=true;
+}
+
+//重設
+reset_btn.addEventListener(MouseEvent.CLICK,reset1);
+
+function reset1(event:MouseEvent):void
+{
+	bird_mc.visible=true;
+	bird_mc.alpha=1;
+	bird_mc.rotation=0;
+	bird_mc.scaleX=1;
+	bird_mc.scaleY=1;
+	bird_mc.x=288;
+	bird_mc.y=190;
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>加法運算:驗證答案對錯撥放不同的動畫</h2>
+<p>&nbsp;</p>
+<h3>作品展示</h3>
+<p>
+  <object id="FlashID4" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="400">
+    <param name="movie" value="../../Assert/media/4_加法運算.swf" />
+    <param name="quality" value="high" />
+    <param name="wmode" value="opaque" />
+    <param name="swfversion" value="9.0.45.0" />
+    <!-- 此 param 標籤會提示使用 Flash Player 6.0 r65 和更新版本的使用者下載最新版本的 Flash Player。如果您不想讓使用者看到這項提示，請將其刪除。 -->
+    <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+    <!-- 下一個物件標籤僅供非 IE 瀏覽器使用。因此，請使用 IECC 將其自 IE 隱藏。 -->
+    <!--[if !IE]>-->
+    <object type="application/x-shockwave-flash" data="../../Assert/media/4_加法運算.swf" width="550" height="400">
+      <!--<![endif]-->
+      <param name="quality" value="high" />
+      <param name="wmode" value="opaque" />
+      <param name="swfversion" value="9.0.45.0" />
+      <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+      <!-- 瀏覽器會為使用 Flash Player 6.0 和更早版本的使用者顯示下列替代內容。 -->
+      <div>
+        <h4>這個頁面上的內容需要較新版本的 Adobe Flash Player。</h4>
+        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="取得 Adobe Flash Player" width="112" height="33" /></a></p>
+      </div>
+      <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+  </object>
+</p>
+<h3>程式碼</h3>
+<pre class="brush: as3">
+var a:int  
+var b:int  
+re();
+
+function re(){
+//this.addChild(qa_mc.a_btn);
+ans_txt.text="";
+a=Math.random()*99;
+b=Math.random()*99;
+n1_txt.text=String(a);
+n2_txt.text=String(b);}
+
+qa_mc.a_btn.addEventListener(MouseEvent.CLICK, ans);
+function ans(event:MouseEvent):void{
+	if(ans_txt.text==String(a+b)){
+		vxq_mc.gotoAndStop(25);
+		qa_mc.a_btn.visible=false;
+	}
+	else{
+		vxq_mc.gotoAndStop(26);
+		ans_txt.text="";
+		
+	}
+}
+
+qa_mc.q_btn.addEventListener(MouseEvent.CLICK, qus);
+function qus(event:MouseEvent):void{
+	re();
+	vxq_mc.gotoAndPlay(1);
+	qa_mc.a_btn.visible=true;
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>電子錶</h2>
+<p>&nbsp;</p>
+<h3>作品展示</h3>
+<p>
+  <object id="FlashID5" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="358" height="540">
+    <param name="movie" value="../../Assert/media/電子錶_0528.swf" />
+    <param name="quality" value="high" />
+    <param name="wmode" value="opaque" />
+    <param name="swfversion" value="9.0.45.0" />
+    <!-- 此 param 標籤會提示使用 Flash Player 6.0 r65 和更新版本的使用者下載最新版本的 Flash Player。如果您不想讓使用者看到這項提示，請將其刪除。 -->
+    <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+    <!-- 下一個物件標籤僅供非 IE 瀏覽器使用。因此，請使用 IECC 將其自 IE 隱藏。 -->
+    <!--[if !IE]>-->
+    <object type="application/x-shockwave-flash" data="../../Assert/media/電子錶_0528.swf" width="358" height="540">
+      <!--<![endif]-->
+      <param name="quality" value="high" />
+      <param name="wmode" value="opaque" />
+      <param name="swfversion" value="9.0.45.0" />
+      <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+      <!-- 瀏覽器會為使用 Flash Player 6.0 和更早版本的使用者顯示下列替代內容。 -->
+      <div>
+        <h4>這個頁面上的內容需要較新版本的 Adobe Flash Player。</h4>
+        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="取得 Adobe Flash Player" width="112" height="33" /></a></p>
+      </div>
+      <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+  </object>
+</p>
+<h3>程式碼</h3>
+<pre class="brush: as3">
+addEventListener(Event.ENTER_FRAME, ff);
+function ff(event:Event):void{
+
+var mydate:Date=new Date()
+trace(mydate.getFullYear());//西元年→2013→方法，有小括號
+//trace(mydate.fullYear);//西元年→2013→屬性
+trace(mydate.getMonth()+1);//月份要加1，因為排序號碼從0開始
+trace(mydate.getDate());//日
+trace(mydate.getHours());//時
+trace(mydate.getMinutes());//分
+trace(mydate.getSeconds());//秒
+trace(mydate.getDay());//星期
+
+y_txt.text=String(mydate.getFullYear()-1911)
+m_txt.text=String(mydate.getMonth()+1)
+d_txt.text=String(mydate.getDate())
+h_txt.text=String(mydate.getHours())
+m2_txt.text=String(mydate.getMinutes())
+s_txt.text=String(mydate.getSeconds())
+w_txt.text=String(mydate.getDay())
+
+switch (mydate.getDay()) {
+	case 1:
+		w_txt.text="星期一";
+		break;
+	case 2:
+		w_txt.text="星期二";
+		break;
+	case 3:
+		w_txt.text="星期三";
+		break;
+	case 4:
+		w_txt.text="星期四";
+		break;
+	case 5:
+		w_txt.text="星期五";
+		break;
+	case 6:
+		w_txt.text="星期六";
+		break;
+	case 0:
+		w_txt.text="星期日";
+		break;
+	}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+<script type="text/javascript">
+swfobject.registerObject("FlashID");
+swfobject.registerObject("FlashID2");
+swfobject.registerObject("FlashID3");
+swfobject.registerObject("FlashID4");
+swfobject.registerObject("FlashID5");
+</script>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushAS3.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+</html>

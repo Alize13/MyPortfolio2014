@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>陣列與字串</h1>
+<h2>＊java04片段:計算出多項式</h2>
+<h2>a)x^2+x+1 </h2>
+<h2>b)x^3-3x-1</h2>
+<h2>並列印出當x=1 ,(a)=? x=2,(b)=?</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a201.png" width="407" height="94" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+public class compute_496631580{
+	public static void main(String args[]){ //用陣列儲存多項式係數
+		int[] a = {1,1,1};
+		int[] b = {1,-3,-1};
+		
+		Compute X = new Compute();		
+				
+		System.out.println("compute(a,1) = " +X.compute(a,1));
+		System.out.println("compute(b,2) = " +X.compute(b,2));}
+		
+	public int compute(int c[] , int n){
+		int y;//答案值
+				
+		if(c[1] == 1){		//以兩函數係數不同的地方來判斷該代入何者	
+				y = n*n*c[0]+n*c[1]+c[2];// x^2 + x + 1
+				return y;}		
+		else{				
+				y = n*n*n*c[0]+n*c[1]+c[2];//x3 -3x -1
+				return y;}
+	}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java05片段:對使用者輸入的字串以及載入1.txt的字串</h2>
+<h2>進行以下判斷並輸出：</h2>
+<h2>1)與字串第一個字相同的字的陣列位置</h2>
+<h2>2)將字串分成一半比較是否相同或對稱</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a202.png" width="443" height="179" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+import java.util.Scanner; 
+import java.io.File;
+import java.io.FileNotFoundException;
+
+public class Exam_1{
+	public static void check(String str){
+		char y = str.charAt(0);
+		char z;
+		int a;
+		
+		for(a=0 ; a< str.length() ; a++){ 
+			z = str.charAt(a); 
+			if(z==y) 
+			System.out.print(a + ",");} 
+		System.out.println("");
+				
+		String str1 = str.substring(0,str.length()/2);  //儲存前半段字串
+		String str2 = str.substring(str.length()/2,str.length());  //後半段
+    	StringBuffer buf = new StringBuffer(str2);
+		String str3 = new String(buf.reverse());     //儲存反轉後的後半段字串
+		
+		if(str1.equals(str3))
+		 	System.out.println("左右對稱");			 
+		else
+			System.out.println("左右不對稱");
+								
+    	if(str1.equals(str2))
+       		System.out.println("前後相同");
+       	else
+      	 	System.out.println("前後不相同");}
+			
+   public static void main( String args[] )throws FileNotFoundException{
+ 		Exam_1 x = new Exam_1();
+ 				
+      	System.out.printf( "請輸入一個有偶數個英文字母的字串\n");
+      	
+      	Scanner input = new Scanner( System.in );
+      	
+      	String s;
+		s = input.next(); 
+      	x.check(s);
+      	
+      	Scanner input1 = new Scanner( new File("1.txt") );
+
+      	String t;
+		t = input1.next(); 
+		x.check(t);} 
+} 
+
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java06片段:撰寫一個帳戶類別,再另寫一個Test檔案</h2>
+<h2>顯示出帳戶姓名分別為兩個好友的暱稱</h2>
+<h2>第一個帳號為自己的學號後五碼,餘額為機位,第二個反之,</h2>
+<h2>之後顯示好友2帳戶轉帳$100給好友1,好友1提款出$50塊</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a203.png" width="290" height="89" /></p>
+<p>&nbsp;</p>
+<h3>程式碼1</h3>
+<pre class="brush: java">
+/***************************************
+ * 這是一個 Account 類別
+ ***************************************/
+
+class Account {
+    private String name;
+    private String number;
+	private int balance;
+
+    /********************************
+     * 帳戶
+     ********************************/
+	Account(String nameIn, String numberIn, int balanceIn ){
+		balance = balanceIn; //餘額
+		name = nameIn;       //帳戶姓名
+		number = numberIn;}  //帳號
+    
+    /********************************
+     * 存款 提款 轉帳
+     ********************************/
+	
+	public void deposit( int amount ){
+		balance= balance + amount;}     //存款
+
+	public void withdraw(int amount){
+		balance = balance - amount;}    //提款
+
+	public String getName(){
+		return name;}
+
+	public String getNumber(){
+		return number;}  
+
+	public int getBalance(){
+		return balance;}
+
+	public void transfer(Account x, int amount){
+		balance = balance - amount;
+		x.deposit(amount);}             //轉帳
+
+
+	public void display(){
+		System.out.print("姓名：" + getName() + "帳號：" + getNumber() + "餘額：" + getBalance() );
+		System.out.println();}
+}  
+</pre>
+<p>&nbsp;</p>
+<h3>程式碼2</h3>
+<pre class="brush: java">
+public class Account_Test{
+  public static void main(String args[]){
+	  Account firstAccount = new Account("魅", "31580", 67);
+	  Account secondAccount = new Account("艾", "67", 31580);
+
+	  firstAccount.display();
+	  secondAccount.display();
+
+	  secondAccount.transfer(firstAccount, 100);
+	  firstAccount.withdraw(50);
+
+	  firstAccount.display();
+	  secondAccount.display();} 
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java07片段:隨機產生一個3X3的array1陣列,</h2>
+<h2>用array2儲存array1所有位置的索引值</h2>
+<h2>再隨機產生一個4X4的array3陣列,</h2>
+<h2>用array4儲存array3所有位置的索引值</h2>
+<h2>最後輸出array1和array2代表array1值為0的位子</h2>
+<h2>以及array3和array4代表array3值為0的位子</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a204.png" width="461" height="450" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+public class Exam_3{
+	public int transform(int a[][], int zero[][]){
+		int n, b,x=0;         
+		for (n = 0; n < a.length; n++){
+			for (b = 0; b < a[n].length; b++){
+				if(a[n][b] == 0){
+				   	x+=1;
+           			zero[x-1][0]=n;
+           			zero[x-1][1]=b;}          
+			 }			
+		 }
+		return x;
+	}
+		
+	public static void main(String[] args){
+		int array1[][] = new int[3][3];
+		int array2[][] = new int[9][2];
+		
+		int f,e;
+		int g,h;
+		
+		for(g=0 ; g<=2 ; g++){
+			for(h=0 ; h<=2 ; h++){
+			    array1[g][h]=(int)(Math.random()*3);}
+		}
+
+
+		Exam_3 mm = new Exam_3();
+		mm.transform(array1, array2); //呼叫 transform(array1, array2) 方法		
+		
+        System.out.println("array1:");
+		for(f=0 ; f<=2 ; f++){
+			for(e=0 ; e<=2 ; e++)
+				System.out.print(array1[f][e] + "\t");
+				e = 0;
+				System.out.println();}
+	
+		int i,j;
+    	int k = mm.transform(array1,array2);
+    
+    	System.out.println("array2:");
+    	for (i = 0; i < k; i++){
+			for (j = 0; j <= 1; j++){
+				System.out.print(array2[i][j] + "\t");}
+			System.out.println();}
+		//利用 transform傳回的值，列印 array2 中所有用來代表 array1 值為 0 的元素之列索引及欄索引。
+
+		
+		int array3[][] = new int[4][4];
+		int array4[][] = new int[16][2];
+		
+		
+		int c,d;
+		
+		for(g=0 ; g<=3 ; g++){
+			for(h=0 ; h<=3 ; h++){
+			    array3[g][h]=(int)(Math.random()*4);}                    
+		}
+
+
+		mm.transform(array3, array4); //transform(array3, array4) 方法
+		
+		System.out.println("array3:");
+		for (c = 0; c <= 3; c++){
+			for (d = 0; d <= 3; d++)
+				System.out.print(array3[c][d] + "\t");
+				d = 0;
+				System.out.println();}
+				
+		int y,z;
+   		int l = mm.transform(array3,array4);
+    
+    	System.out.println("array4:");
+		for (y = 0; y < l; y++){
+			for (z = 0; z <= 1; z++){
+				System.out.print(array4[y][z] + "\t");}
+			System.out.println();}
+		//利用 transform傳回的值，列印 array4 中所有用來代表 array3 值為 0 的元素之列索引及欄索引。
+	}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java08片段:以陣列儲存後以多項式形式輸出下列式子</h2>
+<h2>array1 : 1+x^2</h2>
+<h2>array2 : 2+3x</h2>
+<h2>array3 : array1乘上array2的結果</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a205.png" width="493" height="141" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+public class Exam_4{
+	public void multiply(int a[ ], int b[ ], int c[ ]){      
+    //將a、b所代表的2個多項式相乘產生的多項式的係數存在c陣列中。 
+		int d;
+		int e;
+        for(d=0 ; d<=2 ; d++){
+			for(e=0 ; e<=2 ; e++){
+				c[d+e] += a[d] * b[e];}
+    //註：array3所代表的多項式的最大次方為 array1 的最大次方與 array2 的最大次方之和
+			e=0;}		
+	}
+        
+	public static void main(String args[]){
+		Exam_4 x = new Exam_4();
+	    
+        int array1[] = {1,0,1};
+      	int array2[] = {2,3,0};
+		System.out.printf("array1: %d+%d*x^1+%d*x^2\n", array1[0], array1[1], array1[2]);
+		System.out.printf("array2: %d+%d*x^1\n", array2[0], array2[1]);
+
+		int array3[] = new int [5];  
+		x.multiply(array1, array2, array3);    //呼叫 multiply(array1, array2, array3)       
+		System.out.printf("array3: %d+%d*x^1+%d*x^2+%d*x^3\n",array3[0],array3[1],array3[2],array3[3]);     
+	}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushJava.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+
+</html>

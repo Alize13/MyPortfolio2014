@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jq03</title>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/jquery.easing.min.js"></script>
+<script>
+$(document).ready(function(){
+	function runBox(){
+		var randomX=Math.random()*550;
+		var randomY=Math.random()*700;
+		var randomSize=Math.random()*300;
+		var randomAlpha=Math.random();
+		
+		$('.box07').css('left',randomX+"px")
+		.css('top',randomY+"px")
+		.css('width','0%')
+		.css('height','0%')
+		.css('marginLeft','0px')
+		.css('marginTop','0px')
+		.css('opacity','0');
+		
+		$('.box07').animate({
+			'width':randomSize+"px",
+			'height':randomSize+"px",
+			'marginLeft':randomSize/2+"px",
+			'marginTop':randomSize/2+"px",
+			'opacity':randomAlpha,
+			},1000);
+		setTimeout(runBox,2500);
+		}
+	setTimeout(runBox,2500);
+	
+});
+</script>
+<link href="css/jq01.css" rel="stylesheet" type="text/css" />
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id=jq02>
+<h1>JQuery隨機動畫</h1>
+<h2>＊jQ07片段:隨機動畫 </h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: js">
+	$(document).ready(function(){
+		function runBox(){ /*利用Math.random隨機產生0到1之間的數字*/
+			/*宣告變數儲存隨機的X座標 將隨機產生數字乘上視窗寬度讓隨機的X座標不會超出視窗*/
+            var randomX=Math.random()*$(window).width();
+            /*隨機Y座標*/
+			var randomY=Math.random()*$(window).height();
+            /*隨機大小*/
+			var randomSize=Math.random()*$(window).width()/2;
+			/*隨機透明度*/
+            var randomAlpha=Math.random();
+            
+			/*移動座標*/
+			$('.box07').css('left',randomX+"px")
+			.css('top',randomY+"px")
+			.css('width','0%')
+			.css('height','0%')
+			.css('marginLeft','0px')
+			.css('marginTop','0px')
+			.css('opacity','0');
+			
+            /*顯現出大小跟透明度*/
+			$('.box07').animate({
+				'width':randomSize+"px",
+				'height':randomSize+"px",
+                /*由於box07的基準點是在左上角 有時會超出視窗
+                  所以設定MarginLeft跟Margintop讓移動的基準點在box07中心*/
+				'marginLeft':randomSize/2+"px",
+				'marginTop':randomSize/2+"px",
+				'opacity':randomAlpha,
+				},1000);
+			setTimeout(runBox,2500);
+			}
+		setTimeout(runBox,2500);	
+	});</pre>
+
+<div class="box07"></div>
+</div>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushJScript.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+</html>
+</html>

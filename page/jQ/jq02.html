@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jq03</title>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/jquery.easing.min.js"></script>
+<script>
+	$(document).ready(function(){
+		var motion=new Array('easeInElastic','easeInBounce','easeOutElastic','easeInOutBack','easeInQuart');
+		$('.box03').each(function(i){
+			$(this).css('left',i*100+10*i+"px");
+			$(this).animate({'top':'700px'},2500,motion[i]);
+			$(this).append(motion[i]);
+		})
+	})
+</script>
+<link href="css/jq01.css" rel="stylesheet" type="text/css" />
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="jq01">
+<h1>JQuery easing外掛</h1>
+<h2>＊jQ03片段:利用jQuery easing外掛製作動畫</h2>
+<h2> (效果類似ActionScript的Tweener)</h2>
+<h3>程式碼</h3>
+<pre class="brush: js">
+		$(document).ready(function(){
+		/*宣告一陣列儲存想要的運動方式*/
+		var motion=new Array(
+  'easeInElastic','easeInBounce','easeOutElastic','easeInOutBack','easeInQuart');
+		/*寫一個each迴圈(類似for迴圈功能)  PS:i不用宣告就可以用喔*/
+$('.box03').each(function(i){
+			$(this).css('left',i*100+10*i+"px");
+			$(this).animate({'top':'500px'},2500,motion[i]);
+			/*append加入*/
+			$(this).append(motion[i]);
+		})
+	})
+</pre>
+</div>
+<div class="box03"></div>
+<div class="box03"></div>
+<div class="box03"></div>
+<div class="box03"></div>
+<div class="box03"></div>
+
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushJScript.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+
+</html>

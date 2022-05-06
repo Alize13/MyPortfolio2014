@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>排序與搜尋</h1>
+<h2>＊java09片段:改進泡沫排序法之執行效率</h2>
+<h2> 減少內層迴圈比較次數<br />
+  </h2>
+<h2>當某次內層迴圈沒有任何交換時，直接跳出外層迴圈</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a301.png" width="689" height="336" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+
+class BubbleSort{
+
+   // ------------------
+   //    列印原始資料
+   // ------------------
+   public static void printHeader(int [] d){
+		int i = 0;
+      	System.out.print("陣列d ");
+      	while( i < d.length)
+     		System.out.printf(" [%2d]", i++);
+      	
+        System.out.println();
+      	System.out.print("排序前 :");
+
+      	for(int x : d)
+         	System.out.printf("%5s", x);
+
+      	System.out.println();
+      	System.out.println();}
+   // --------------------
+   //    泡沫排序法
+   // --------------------
+   public static void sortData(int [] d){
+      int i, j,temp;
+	  int k = d.length - 1;
+	  boolean x = true;
+
+	  for (i = 0; i < (d.length - 1); i++){
+		 x = true;
+
+         for(j = 0; j < k; j++){
+            if(d[j] > d[j+1]){
+			   x = false;
+               temp = d[j];
+               d[j] = d[j+1];
+               d[j+1] = temp;}
+         }
+
+		 k--;
+
+		 if (x == true)
+			 break;
+
+         System.out.printf("回合 %2d>", i);
+         printData(d);}
+   }
+   // -------------------------
+   //    印出陣列d的內容
+   // -------------------------
+   public static void printData(int [] d){
+      for(int i : d)
+		System.out.printf("%5s", i);
+      
+	  System.out.println();}
+}
+
+class hw_1{
+   public static void main(String [] args){
+      int [] d = {26, 31, 81, 16, 51, 11, 21, 8, 40, 6, 22, 90};
+	  BubbleSort.printHeader(d);
+	  BubbleSort.sortData(d);}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java10片段:將{14, 21, 81, 10, 25, 36}陣列</h2>
+<h2>做出插入排序由小到大排列</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a302.png" width="373" height="63" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+public class Mid_1 {
+    public static void main(String[] args) {
+        int insert_sort[] = {14, 21, 81, 10, 25, 36};
+        int i=0, j=insert_sort.length-1;//起始值
+        int t;//暫存
+        
+        for(i=1 ; i<=insert_sort.length-1 ; i++){
+        	t = insert_sort[i];
+           
+           //比最小向右移動
+           //j = i-1, 從要加入的那個數字的左邊那一個開始比起
+           //j--, 慢慢向左比
+        for(j= i-1 ; j>=0 ; j--){
+               if(insert_sort[j]>t){
+                   insert_sort[j+1] = insert_sort[j];}
+               else {
+                   break;}
+           }
+           
+        insert_sort[j+1] = t;}
+        
+		for(int k=0 ; k< insert_sort.length ; k++){
+            System.out.print(insert_sort[k] + " ");}       
+    }    
+}
+
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java11片段:將{26, 31, 18, 16, 51, 11, 21, 8, 40, 11, 22}陣列</h2>
+<h2>做出挑選排序由小到大排列</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a303.png" width="496" height="59" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+public class Mid_2 {
+    public static void main(String[] args) {
+        int select_sort[] = {26, 31, 18, 16, 51, 11, 21, 8, 40, 11, 22};
+        int temp=0;
+        
+        for(int i=0 ; i< select_sort.length; i++){
+            for(int j=i+1; j< select_sort.length; j++){
+                if(select_sort[j]< select_sort[i]){
+                    temp = select_sort[i];
+                    select_sort[i] = select_sort[j];
+                    select_sort[j] = temp;}
+            }
+        }
+        
+        for(int i=0 ; i< select_sort.length ; i++){
+            System.out.print(select_sort[i] + " ");}
+    }    
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java12片段:以int binary_search(int S_key, int x[])方法，</h2>
+<h2>為{92,82,72,62,52,46,42,31,22,12,2}陣列做二分搜尋法查詢 </h2>
+<h2>S_key 是否在該陣列中：  </h2>
+<h2>(a) 如果在其中，則傳回其索引值。  </h2>
+<h2>(b) 如果不在其中，則傳回 -1。  </h2>
+<h2>於主程式中分別測試 S_key 為 46及 84，</h2>
+<h2>每次與 x[low] 至 x[high] 的中間值比較大小時，</h2>
+<h2>應將該 low、high、middle 的索引值列出來。</h2>
+<h2>最後依其傳回值是否為 -1 ，列印 “找到” 或 “沒有找到” </h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/a304.png" width="608" height="246" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+class search{
+   int no_found, no_compare;
+   int binary_search(int S_Key, int x[]){
+      int i, j, low = 0, high = x.length - 1;
+
+      no_found = 0;
+      no_compare = 0;
+
+      if(S_Key < x[low] || S_Key > x[high]){
+         System.out.println("陣列中不存在鍵值 " + S_Key + "。\n");
+         return no_found;}
+      
+      while(low <= high){
+         i = (low + high) / 2;
+         no_compare++;
+         System.out.println("low: x[" + low + "], high: x[" + high + "], middle: x[" + i + "]");
+         if(S_Key == x[i]){
+            no_found++;
+            System.out.println("找到第 " + no_found + " 筆，x[" + i + "] = " + S_Key);
+            search_next(S_Key, x, i);
+            break ;}
+         if(S_Key > x[i])
+            low = i + 1;
+         else
+            high = i - 1;}   
+
+      if(no_found > 0)
+         System.out.println("找到 你的機位號碼" + S_Key + "。\n");
+      else
+         System.out.println("沒有找到 " + S_Key + "。\n");
+      return no_found;}
+
+   void search_next(int S_Key, int x[], int i){
+      int j;
+      j = i - 1;
+      while(j >= 0){
+         no_compare++;
+         if(S_Key == x[j]){
+            no_found++;
+            j--;}
+         else
+            break;}
+
+      j = i + 1;
+      while(j < x.length){
+         no_compare++;
+         if(S_Key == x[j]){
+            no_found++;
+            j++;}
+         else
+            break;}
+   }
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushJava.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+</html>

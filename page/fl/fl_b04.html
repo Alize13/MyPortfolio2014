@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>監聽事件</h1>
+<h2>利用監聽事件製作影箱</h2>
+<p>&nbsp;</p>
+<h3>作品展示</h3>
+<p>
+  <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="681" height="235">
+    <param name="movie" value="../../Assert/media/監聽事件影箱動畫.swf" />
+    <param name="quality" value="high" />
+    <param name="wmode" value="opaque" />
+    <param name="swfversion" value="15.0.0.0" />
+    <!-- 此 param 標籤會提示使用 Flash Player 6.0 r65 和更新版本的使用者下載最新版本的 Flash Player。如果您不想讓使用者看到這項提示，請將其刪除。 -->
+    <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+    <!-- 下一個物件標籤僅供非 IE 瀏覽器使用。因此，請使用 IECC 將其自 IE 隱藏。 -->
+    <!--[if !IE]>-->
+    <object type="application/x-shockwave-flash" data="../../Assert/media/監聽事件影箱動畫.swf" width="681" height="235">
+      <!--<![endif]-->
+      <param name="quality" value="high" />
+      <param name="wmode" value="opaque" />
+      <param name="swfversion" value="15.0.0.0" />
+      <param name="expressinstall" value="../../Scripts/expressInstall.swf" />
+      <!-- 瀏覽器會為使用 Flash Player 6.0 和更早版本的使用者顯示下列替代內容。 -->
+      <div>
+        <h4>這個頁面上的內容需要較新版本的 Adobe Flash Player。</h4>
+        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="取得 Adobe Flash Player" width="112" height="33" /></a></p>
+      </div>
+      <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+  </object>
+</p>
+<h3>程式碼</h3>
+<pre class="brush: as3">
+import flash.events.MouseEvent;
+
+for(var i:uint=0;i< btn.numChildren;i++){
+	trace(btn.getChildAt(i).name);
+	var myBtn:MovieClip=btn.getChildAt(i) as MovieClip;
+	myBtn.addEventListener(MouseEvent.MOUSE_OVER,$btnHandler);
+	myBtn.addEventListener(MouseEvent.MOUSE_OUT,$btnHandler);
+	myBtn.addEventListener(MouseEvent.CLICK,$btnHandler);
+	myBtn.buttonMode=true;
+	myBtn.mouseChildren=false;//不傳回子物件名稱(若用Target)  下面函式用currentTarget可以省略此行
+}
+
+function $btnHandler($e:MouseEvent){
+	if($e.type=="mouseOver"){
+	$e.currentTarget.gotoAndPlay("up");	
+	//currentTarget目標層名稱 若用Target點到的元件名稱有可能是目標層子元件
+	}
+	
+	if($e.type=="mouseOut"){
+	$e.currentTarget.gotoAndPlay("down");
+	}
+	
+	if($e.type=="click"){
+		switch($e.target.name){
+			case "first":
+			this.pic_mc.gotoAndPlay("firstIn");
+			break;
+			case "second":
+			this.pic_mc.gotoAndPlay("secondIn");
+			break;
+			case "third":
+			this.pic_mc.gotoAndPlay("thirdIn");
+			break;
+		}
+	}	
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+<script type="text/javascript">
+swfobject.registerObject("FlashID");
+</script>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushAS3.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+</html>

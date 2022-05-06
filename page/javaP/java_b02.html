@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="../../Assert/css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="inCC">
+<h1>物件與類別</h1>
+<h2>＊java26片段: 撰寫一個日期建構子的程式(包含年月日)</h2>
+<h2>對年份與月份做驗證,若驗證為不正確則設為1</h2>
+<h2>  寫一nextday( )函式,測試跨月、跨年時可得正確下一日期</h2>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/b201.png" width="772" height="245" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+public class Date{
+   private int month; // 1-12
+   private int day;   // 1-31 based on month
+   private int year;  // any year
+
+   public Date( int theMonth, int theDay, int theYear ){
+      month = checkMonth( theMonth ); // validate month
+      year = checkYear( theYear ); // could validate year
+      day = checkDay( theDay ); // validate day
+
+      System.out.printf( 
+         "日期建構子為 %s\n", this );} 
+   
+   private int checkYear( int testYear ){      // 檢查年份
+      if ( testYear >= 0 && testYear <= 2010 ) // validate Year
+         return testYear;
+      else { 
+         System.out.printf( 
+            "年份驗證失敗(%d年)  年份設為 1.", testYear );
+         return 1; // maintain object in consistent state}
+   } 
+   
+   private int checkMonth( int testMonth ){   //檢查月份
+      if ( testMonth > 0 && testMonth <= 12 ) 
+         return testMonth;
+      else // month is invalid{ 
+         System.out.printf( 
+            "月份驗證失敗(%d月) 月份設為 1.", testMonth );
+         return 1; // maintain object in consistent state } 
+   } 
+   
+   private int checkDay( int testDay ){
+      int daysPerMonth[] = 
+         { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+   
+      // 檢查對應月份的日期
+      if ( testDay > 0 && testDay <= daysPerMonth[ month ] )
+         return testDay;
+   
+      // 檢查閏年
+      if ( month == 2 && testDay == 29 && ( year % 400 == 0 || 
+           ( year % 4 == 0 && year % 100 != 0 ) ) )
+         return testDay;
+   
+      System.out.printf( "Invalid day (%d) set to 1.", testDay );
+      return 1;  // maintain object in consistent state} 
+   
+   // 回傳字串 月/日/年   
+   public String toString(){ 
+      return String.format( "%d/%d/%d", month, day, year );}    
+   
+   public String nextday( ){
+       int daysPerMonth[] = 
+         { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+         
+      if ( month == 12 && day == 31 ){
+         	month = 1;
+         	day = 1;
+         	year += 1;
+         	return String.format( "%d/%d/%d", month, day, year );}
+           
+      else if ( month == 2 && day == 28 && ( year % 400 == 0 || 
+           ( year % 4 == 0 && year % 100 != 0 ) ) )
+       {
+         	month = month;
+         	day = 29;
+         	year = year;
+         	return String.format( "%d/%d/%d", month, day, year );}      
+       
+       else if(day >= daysPerMonth[month]){
+         	month += 1;
+         	day = 1;
+         	year = year;
+         	return String.format( "%d/%d/%d", month, day, year );}
+       
+       else{
+         	month = month;
+         	day += 1;
+         	year = year;
+         	return String.format( "%d/%d/%d", month, day, year );}
+   } 
+          
+   public static void main( String args[] )
+   {   
+      Date a = new Date( 2, 29, 5678 );//測試檢查年份錯誤時的情況      
+      Date b = new Date( 2, 29, 2000 );//測試閏年跨月
+      Date c = new Date( 2, 28, 2000 );//測試閏年的nextday
+      Date d = new Date( 12, 31, 2009 );//測試跨年
+      Date e = new Date( 11, 30, 1982 );//測試一般的跨月
+      Date f = new Date( 11, 10, 1988 );//測試一般的nextday
+      
+      System.out.println( "(閏年跨月)顯示日期："+ b + "    隔天日期：" + b.nextday() );
+      System.out.println( "(閏年跨日)顯示日期："+ c + "    隔天日期：" + c.nextday() );
+      System.out.println( "(  跨年  )顯示日期："+ d + "    隔天日期：" + d.nextday() );
+      System.out.println( "(  跨月  )顯示日期："+ e + "    隔天日期：" + e.nextday() );
+      System.out.println( "(  跨日  )顯示日期："+ f + "    隔天日期：" + f.nextday() );} 
+}
+
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+<div id="inCC">
+<h2>＊java27片段:寫出複數乘法帶入(12+11i)(11+10i)計算結果</h2>
+<p>&nbsp;</p>
+<h3>執行結果</h3>
+<p><img src="../../Assert/image/java/b202.png" width="373" height="50" /></p>
+<p>&nbsp;</p>
+<h3>程式碼</h3>
+<pre class="brush: java">
+class HW4_2{
+	private int R;//實數
+	private int i;//複數	
+	
+	public HW4_2(){
+		this(0,0);}
+	
+	public HW4_2(int x , int y){
+		this.R = x;
+		this.i = y;}
+
+	void multiply(HW4_2 p){
+		int countR = p.R*R - p.i*i;
+		int counti = p.R*i + p.i*R;
+		System.out.printf("(%d + %di) * (%d + %di) = (%d + %di)",R,i,p.R,p.i,countR,counti);}
+	
+	public static void main(String args[]){
+		HW4_2 a = new HW4_2(12,11);
+    	HW4_2 b = new HW4_2(11,10);
+
+    System.out.println( "複數相乘結果：" );
+    a.multiply(b);}
+}
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</body>
+<link href="../../Assert/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="../../Assert/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushJava.js" type="text/javascript"></script>
+<script src="../../Assert/syntaxhighlighter/scripts/shBrushXml.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+<script>SyntaxHighlighter.defaults['toolbar'] = false;</script>
+</html>

@@ -1,0 +1,137 @@
+@charset "utf-8";
+* {
+	margin: 0px;
+	padding: 0px;
+}
+body  h1{
+	text-align: center;
+	font-family: "MS Serif", "New York", serif;
+	width: 400px;
+	margin-right: auto;
+	margin-left: auto;
+	background-image: url(../image/h1.png);
+	color: #36C;
+	font-size: 36px;
+	line-height: 48px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+body h2 {
+	font-size: 24px;
+	background-color: #CCC;
+	color: #FFF;
+	margin-top: 20px;
+}
+#inCC {
+	margin: 0px;
+	width: 620px;
+}
+
+
+
+#wrapper {
+	width: 950px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#header {
+	width: 850px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 130px;
+	background-image: url(../image/grey_bg.gif);
+	background-repeat: repeat-x;
+}
+
+
+#header #name {
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	height: 130px;
+	width: 520px;
+	background-image: url(../image/c_name.png);
+	background-repeat: no-repeat;
+	background-position: 0px 25px;
+}
+#header #aa {
+	margin: 0px;
+	float: right;
+	height: 130px;
+	width: 330px;
+	padding: 0px;
+	text-align: center;
+	line-height: 29px;
+}
+#bb {
+	width: 850px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 800px;
+	float: none;
+	clear: both;
+	background-color: #F8F8F8;
+}
+
+
+#main {
+	width: 790px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 562px;
+	padding: 0px;
+	background-image: url(../image/mosaik.gif);
+	background-repeat: no-repeat;
+	font-size: 9px;
+	line-height: 12px;
+}
+#sidebar {
+	width: 224px;
+	margin: 0px;
+	float: left;
+	padding-top: 3px;
+	padding-right: 3px;
+	padding-bottom: 0px;
+	padding-left: 3px;
+	text-align: center;
+}
+
+#content {
+	width: 614px;
+	float: right;
+	padding-top: 3px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	overflow: auto;
+}
+
+#footer {
+	width: 850px;
+	margin-right: auto;
+	margin-left: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+	line-height: 14px;
+	color: #7F7F7F;
+	height: 99px;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	font-weight: normal;
+	text-decoration: none;
+	margin-top: 100px;
+}
+
+body h3 {
+	font-size: 20px;
+	color: #666;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+pre {
+	margin: 10px;
+}

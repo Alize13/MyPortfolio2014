@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<myPhotoList>
+<myAlumb>
+    <myAlumbId>Lamborghini Murcielago</myAlumbId>
+    <myAlumbURL>pic/pic1.jpg</myAlumbURL>
+</myAlumb>
+<myAlumb>
+    <myAlumbId>Lamborghini Gallardo</myAlumbId>
+    <myAlumbURL>pic/pic2.jpg</myAlumbURL>
+</myAlumb>
+<myAlumb>
+    <myAlumbId>Lamborghini Aventador</myAlumbId>
+    <myAlumbURL>pic/pic3.jpg</myAlumbURL>
+</myAlumb>
+</myPhotoList>

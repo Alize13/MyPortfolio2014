@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<photos>
+	
+	<config
+		folder="photos/"
+		enable_fullscreen="true"
+		galaxy_background="true"
+		show_tooltip="true"
+		radius="440"
+		default_zoom="5"		
+
+		thumbnail_width="100"
+		thumbnail_height="100"
+		thumbnail_back_alpha="0.25"
+		
+		photo_border_size="10"
+		photo_border_color="#FFFFFF"
+		
+		close_button="true"
+		previous_button="true"
+		next_button="true"
+		
+		description="true"
+		description_bg_color="#000000"
+		description_bg_alpha="0.6"
+		css_file="flashmo_210_style.css"
+		tween_duration="0.5">
+	</config>
+	
+	<photo>
+		<thumbnail>s_photo_001.jpg</thumbnail>
+		<filename>photo_001.jpg</filename>
+		<tooltip>口紅漸層海報</tooltip>
+		<description><![CDATA[<p class="subtitle">口紅漸層海報</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_002.jpg</thumbnail>
+		<filename>photo_002.jpg</filename>
+		<tooltip>網格填色符號</tooltip>
+		<description><![CDATA[<p class="subtitle">網格填色符號</p]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_003.jpg</thumbnail>
+		<filename>photo_003.jpg</filename>
+		<tooltip>花火節海報</tooltip>
+		<description><![CDATA[<p class="subtitle">花火節海報</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_004.jpg</thumbnail>
+		<filename>photo_004.jpg</filename>
+		<tooltip>設計窗花</tooltip>
+		<description><![CDATA[<p class="subtitle">設計窗花</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_005.jpg</thumbnail>
+		<filename>photo_005.jpg</filename>
+		<tooltip>英雄聯盟咖啡杯</tooltip>
+		<description><![CDATA[<p class="subtitle">英雄聯盟咖啡杯</p>]]></description>
+	</photo>
+
+	<photo>
+		<thumbnail>s_photo_006.jpg</thumbnail>
+		<filename>photo_006.jpg</filename>
+		<tooltip>封套扭曲</tooltip>
+		<description><![CDATA[<p class="subtitle">封套扭曲</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_007.jpg</thumbnail>
+		<filename>photo_007.jpg</filename>
+		<tooltip>祥獅獻瑞賀卡</tooltip>
+		<description><![CDATA[<p class="subtitle">祥獅獻瑞賀卡</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_008.jpg</thumbnail>
+		<filename>photo_008.jpg</filename>
+		<tooltip>3D立體字</tooltip>
+		<description><![CDATA[<p class="subtitle">3D立體字</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_009.jpg</thumbnail>
+		<filename>photo_009.jpg</filename>
+		<tooltip>鉛筆</tooltip>
+		<description><![CDATA[<p class="subtitle">鉛筆</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_010.jpg</thumbnail>
+		<filename>photo_010.jpg</filename>
+		<tooltip>旋轉Logo</tooltip>
+		<description><![CDATA[<p class="subtitle">旋轉Logo</p>]]></description>
+	</photo>
+
+	<photo>
+		<thumbnail>s_photo_011.jpg</thumbnail>
+		<filename>photo_011.jpg</filename>
+		<tooltip>圖樣拼貼</tooltip>
+		<description><![CDATA[<p class="subtitle">圖樣拼貼</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_012.jpg</thumbnail>
+		<filename>photo_012.jpg</filename>
+		<tooltip>無縫拼貼</tooltip>
+		<description><![CDATA[<p class="subtitle">無縫拼貼</p>]]></description>
+	</photo>
+	
+	<photo>
+		<thumbnail>s_photo_013.jpg</thumbnail>
+		<filename>photo_013.jpg</filename>
+		<tooltip>普普風透視網格</tooltip>
+		<description><![CDATA[<p class="subtitle">普普風透視網格</p>]]></description>
+	</photo>
+	
+</photos>
